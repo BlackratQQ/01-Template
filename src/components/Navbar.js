@@ -7,13 +7,28 @@ import './Navbar.css'
 
 const Navbar = () => {
 
+  //setting mobal nav
   const [click, setClick] = useState(false)
   const handleClick = () => setClick(!click)
 
+  //change nav color when scrolling
+  const[color, setColor] = useState(false)
+  const changeColor = () =>{
+    if(window.scrollY >= 90){
+      setColor(true)
+    }
+    else{
+      setColor(false)
+    }
+  }
+
+  window.addEventListener('scroll', changeColor);
+
+  //close menu on lick
   const closeMenu = () => setClick(false)
 
   return (
-    <div className='header'>
+    <div className={color ? 'header header-bg' : 'header'}>
       <nav className='navbar'>
         <a href='/' className='logo'>
           <img src={logo} alt='logo' />
